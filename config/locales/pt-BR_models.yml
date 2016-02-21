@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    models:
+      pedido: Pedido
+    attributes:
+     pedido:
+      created_at: "Criado em"
+        
+      # will translate User attribute "login" as "Handle"
+

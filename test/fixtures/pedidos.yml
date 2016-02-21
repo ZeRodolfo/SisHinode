@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  iten_id: 
+  cliente_id: 
+  quantidade: 1
+  valortotal: 9.99
+  datapedido: 2016-02-21 13:46:15
+
+two:
+  iten_id: 
+  cliente_id: 
+  quantidade: 1
+  valortotal: 9.99
+  datapedido: 2016-02-21 13:46:15

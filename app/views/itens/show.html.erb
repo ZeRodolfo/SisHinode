@@ -1,0 +1,23 @@
+<%- model_class = Iten -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:produto_id) %>:</strong></dt>
+  <dd><%= @iten.produto_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:quantidade) %>:</strong></dt>
+  <dd><%= @iten.quantidade %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:quantidademinima) %>:</strong></dt>
+  <dd><%= @iten.quantidademinima %></dd>
+</dl>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              itens_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_iten_path(@iten), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              iten_path(@iten),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
