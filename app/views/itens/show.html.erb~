@@ -5,7 +5,7 @@
 
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:produto_id) %>:</strong></dt>
-  <dd><%= @iten.produto.nome %></dd>
+  <dd><%= @iten.get_produto_nome %></dd>
   <dt><strong><%= model_class.human_attribute_name(:quantidade) %>:</strong></dt>
   <dd><%= @iten.quantidade %></dd>
   <dt><strong><%= model_class.human_attribute_name(:quantidademinima) %>:</strong></dt>
