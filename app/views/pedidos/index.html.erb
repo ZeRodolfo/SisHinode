@@ -19,8 +19,8 @@
     <% @pedidos.each do |pedido| %>
       <tr>
         <td><%= link_to pedido.id, pedido_path(pedido) %></td>
-        <td><%= pedido.iten_id %></td>
-        <td><%= pedido.cliente_id %></td>
+        <td><%= pedido.iten.produto.nome %></td>
+        <td><%= pedido.cliente.nome %></td>
         <td><%= pedido.quantidade %></td>
         <td><%= pedido.valortotal %></td>
         <td><%= pedido.datapedido %></td>

@@ -18,7 +18,7 @@
   <div class="form-group">
     <%= f.label :iten_id, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.collection_select(:iten_id, Iten.all, :id, :'produto'.nome, prompt: true)%>
+      <%= f.collection_select(:iten_id, Iten.all, :id, :produto.nome, prompt: true)%>
     </div>
     <%=f.error_span(:iten_id) %>
   </div>

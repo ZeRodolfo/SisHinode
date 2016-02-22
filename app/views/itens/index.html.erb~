@@ -17,7 +17,7 @@
     <% @itens.each do |iten| %>
       <tr>
         <td><%= link_to iten.id, iten_path(iten) %></td>
-        <td><%= iten.produto.nome %></td>
+        <td><%= iten.produto_id %></td>
         <td><%= iten.quantidade %></td>
         <td><%= iten.quantidademinima %></td>
         <td><%=l iten.created_at %></td>
