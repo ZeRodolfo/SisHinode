@@ -4,7 +4,7 @@ class ItensController < ApplicationController
   # GET /itens
   # GET /itens.json
   def index
-    @itens = Iten.order(:id)
+    @itens = Iten.all
   end
 
   # GET /itens/1

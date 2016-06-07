@@ -4,7 +4,7 @@ class ProdutosController < ApplicationController
   # GET /produtos
   # GET /produtos.json
   def index
-    @produtos = Produto.order(:id)
+    @produtos = Produto.all
   end
 
   # GET /produtos/1

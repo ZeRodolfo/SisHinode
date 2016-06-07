@@ -4,7 +4,7 @@ class PedidosController < ApplicationController
   # GET /pedidos
   # GET /pedidos.json
   def index
-    @pedidos = Pedido.all
+    @pedidos = Pedido.order(:id)
   end
 
   # GET /pedidos/1
@@ -19,21 +19,28 @@ class PedidosController < ApplicationController
 
   # GET /pedidos/1/edit
   def edit
-	nome = produto.nome
   end
 
   # POST /pedidos
   # POST /pedidos.json
   def create
     @pedido = Pedido.new(pedido_params)
-
+    item = Iten.find(params[:pedido][:iten_id])
     respond_to do |format|
-      if @pedido.save
-        format.html { redirect_to @pedido, notice: 'Pedido was successfully created.' }
-        format.json { render :show, status: :created, location: @pedido }
+      if item.quantidade >= @pedido.quantidade
+	  item.quantidade = item.quantidade - @pedido.quantidade
+
+      if @pedido.save && item.save
+          format.html { redirect_to @pedido, notice: 'Pedido was successfully created.' }
+          format.json { render :show, status: :created, location: @pedido }
       else
-        format.html { render :new }
-        format.json { render json: @pedido.errors, status: :unprocessable_entity }
+          format.html { render :new }
+          format.json { render json: @pedido.errors, status: :unprocessable_entity }
+      end
+      else
+	  @pedido.errors.add(:quantidade,"Quantidade do pedido maior que no estoque")
+	  format.html { render :new }
+	  format.json { render json: @pedido.erros, status: :unprocessable_entity }
       end
     end
   end
@@ -41,6 +48,8 @@ class PedidosController < ApplicationController
   # PATCH/PUT /pedidos/1
   # PATCH/PUT /pedidos/1.json
   def update
+    item = Iten.find(@pedido.iten_id)
+    qtdatual = @pedido.quantidade
     respond_to do |format|
       if @pedido.update(pedido_params)
         format.html { redirect_to @pedido, notice: 'Pedido was successfully updated.' }
@@ -49,13 +58,26 @@ class PedidosController < ApplicationController
         format.html { render :edit }
         format.json { render json: @pedido.errors, status: :unprocessable_entity }
       end
-    end
+      if qtdatual > @pedido.quantidade
+         qtd = qtdatual - @pedido.quantidade
+         item.quantidade = item.quantidade + qtd
+      else 
+          if qtdatual < @pedido.quantidade
+              qtd = qtdatual - @pedido.quantidade
+              item.quantidade = item.quantidade - qtd
+          end
+      end
+     item.save
+    end 
   end
 
   # DELETE /pedidos/1
   # DELETE /pedidos/1.json
   def destroy
-    @pedido.destroy
+    item = Iten.find(@pedido.iten_id)
+    item.quantidade = item.quantidade + @pedido.quantidade
+    item.save
+    @pedido.destroy 
     respond_to do |format|
       format.html { redirect_to pedidos_url, notice: 'Pedido was successfully destroyed.' }
       format.json { head :no_content }

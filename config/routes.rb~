@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   get 'welcome/index'
+  
+  root 'welcome#index'
 
   resources :pedidos
   resources :pedidos
@@ -65,4 +67,16 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  namespace :api do 
+	namespace :v1 do
+		resources :cliente do
+			resources :pedido
+		end
+	end
+  end
+
+
+
+
 end

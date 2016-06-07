@@ -5,7 +5,7 @@ class ClientesController < ApplicationController
   # GET /clientes.json
   
   def index
-	@clientes = Cliente.order(:id)
+	@clientes = Cliente.order[:cliente_id]
   end
 
   # GET /clientes/1
