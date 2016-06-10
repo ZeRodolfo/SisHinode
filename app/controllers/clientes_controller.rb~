@@ -1,11 +1,12 @@
 class ClientesController < ApplicationController
   before_action :set_cliente, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user
 
   # GET /clientes
   # GET /clientes.json
   
   def index
-	@clientes = Cliente.order[:cliente_id]
+	@clientes = Cliente.order(:id)
   end
 
   # GET /clientes/1

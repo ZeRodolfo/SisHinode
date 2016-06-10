@@ -1,2 +1,13 @@
-<h1>Bem Vindo ao SisHinode</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+<h1>SisHinode</h1>
+<p>Bem Vindo ao SisHinode</p>
+
+<% if user_signed_in? %>
+<ul>
+    <li><%= link_to "Sair", destroy_user_session_path, method: :delete %></li>
+</ul>
+<% else %>
+<ul>
+    <li><%= link_to "Novo Cadastro", new_user_registration_path %></li>
+    <li><%= link_to "Entre", new_user_session_path %></li>
+</ul>
+<% end %>
